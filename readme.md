@@ -32,7 +32,9 @@ The infrastructure includes:
 - Private subnet resources route outbound traffic via a NAT Gateway
 - Network isolation and routing are explicitly defined using Terraform
 
-## Architecture Diagram
+## 🧩 Architecture Diagram
+
+```text
 ┌──────────────────────────────────────────────┐
 │                  Internet                    │
 └───────────────────────┬──────────────────────┘
@@ -66,7 +68,7 @@ The infrastructure includes:
         │                                     │
         └─────────────────────────────────────┘
 
-
+```
 ---
 
 ## Technology Stack
@@ -91,7 +93,7 @@ The infrastructure includes:
 ├── .gitignore
 └── README.md
 
-```text
+```
 ---
 
 ## Deployment Steps
