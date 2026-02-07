@@ -50,7 +50,6 @@ _(Architecture diagram to be added)_
 
 ## Project Structure
 
-```text
 .
 ├── main.tf         # Core infrastructure resources
 ├── variables.tf   # Input variables
