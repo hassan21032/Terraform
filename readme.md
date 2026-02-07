@@ -32,7 +32,40 @@ The infrastructure includes:
 - Private subnet resources route outbound traffic via a NAT Gateway
 - Network isolation and routing are explicitly defined using Terraform
 
-_(Architecture diagram to be added)_
+## Architecture Diagram
+┌──────────────────────────────────────────────┐
+│                  Internet                    │
+└───────────────────────┬──────────────────────┘
+                        │
+                ┌───────▼────────┐
+                │ Internet Gateway│
+                └───────┬────────┘
+                        │
+        ┌─────────────────────────────────────┐
+        │              VPC                     │
+        │           10.0.0.0/16                │
+        │                                     │
+        │   ┌───────────────┐   ┌──────────┐ │
+        │   │ Public Subnet │   │ Private  │ │
+        │   │ 10.0.1.0/24   │   │ Subnet   │ │
+        │   │               │   │10.0.2.0/24│ │
+        │   │  ┌─────────┐ │   │          │ │
+        │   │  │  EC2    │ │   │          │ │
+        │   │  │ NGINX   │ │   │          │ │
+        │   │  │ Ubuntu  │ │   │          │ │
+        │   │  └─────────┘ │   │          │ │
+        │   │               │   │          │ │
+        │   │ Route Table   │   │ Route    │ │
+        │   │ 0.0.0.0/0 → IGW│  │ 0.0.0.0/0 → NAT│
+        │   └───────────────┘   └──────┬───┘ │
+        │                               │     │
+        │                        ┌──────▼───┐ │
+        │                        │ NAT GW   │ │
+        │                        │ + EIP    │ │
+        │                        └──────────┘ │
+        │                                     │
+        └─────────────────────────────────────┘
+
 
 ---
 
@@ -49,7 +82,7 @@ _(Architecture diagram to be added)_
 ---
 
 ## Project Structure
-
+```text
 .
 ├── main.tf         # Core infrastructure resources
 ├── variables.tf   # Input variables
@@ -58,6 +91,7 @@ _(Architecture diagram to be added)_
 ├── .gitignore
 └── README.md
 
+```text
 ---
 
 ## Deployment Steps
